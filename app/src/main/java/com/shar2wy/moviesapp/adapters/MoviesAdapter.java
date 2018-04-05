@@ -15,6 +15,9 @@ import com.shar2wy.moviesapp.models.Movie;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by shar2wy on 4/7/17.
  */
@@ -38,8 +41,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
-        final Movie movie= mMovies.get(position);
-        holder.movieTitle.setText(movie.getTitle());
+        final Movie movie = mMovies.get(position);
+            holder.movieTitle.setText(movie.getTitle());
         String imageUrl = "http://image.tmdb.org/t/p/w185" + movie.getPosterPath();
 
         Glide
@@ -61,23 +64,26 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         mOnMovieClickListener = listener;
     }
 
-    public interface OnMovieClickListener {
-        void onMovieClick(@NonNull Movie movie);
-    }
-
     @Override
     public int getItemCount() {
         return mMovies.size();
     }
 
+    public interface OnMovieClickListener {
+        void onMovieClick(@NonNull Movie movie);
+    }
+
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.movie_item_title)
         TextView movieTitle;
+
+        @BindView(R.id.movie_item_image)
         ImageView moviePoster;
 
-        public MovieViewHolder(View v) {
-            super(v);
-            movieTitle = (TextView) v.findViewById(R.id.movie_item_title);
-            moviePoster = (ImageView) v.findViewById(R.id.movie_item_image);
+        public MovieViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
         }
     }
 }

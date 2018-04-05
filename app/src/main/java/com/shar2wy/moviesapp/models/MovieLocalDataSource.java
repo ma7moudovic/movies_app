@@ -26,12 +26,6 @@ class MovieLocalDataSource {
     }
 
     public void saveMovies(final List<Movie> movies) {
-        Realm.getDefaultInstance()
-                .executeTransaction(new Realm.Transaction() {
-                    @Override
-                    public void execute(Realm realm) {
-                        realm.insertOrUpdate(movies);
-                    }
-                });
+        Realm.getDefaultInstance().executeTransaction(realm -> realm.insertOrUpdate(movies));
     }
 }

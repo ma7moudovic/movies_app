@@ -19,6 +19,8 @@ import com.shar2wy.moviesapp.models.MovieRepo;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -27,27 +29,28 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnMovieClickListener {
 
+    @BindView(R.id.recycler_view_movies)
     RecyclerView recyclerViewMovies;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     MoviesAdapter moviesAdapter;
     List<Movie> mMovies = new ArrayList<>();
     GridLayoutManager layoutManager;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
-    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-
         initViews();
-
     }
 
     private void initViews() {
 
-        recyclerViewMovies = (RecyclerView) findViewById(R.id.recycler_view_movies);
         recyclerViewMovies.setHasFixedSize(true);
         recyclerViewMovies.setItemAnimator(new DefaultItemAnimator());
 
