@@ -1,4 +1,4 @@
-package com.shar2wy.moviesapp.models;
+package com.shar2wy.moviesapp.models.moviesRepo;
 
 import android.content.Context;
 
@@ -34,7 +34,7 @@ public class MovieRepo {
     }
 
     public Flowable<List<Movie>> getMovies() {
-        return Flowable.concat(localDataSource.getMovies(20),
+        return Flowable.concat(localDataSource.getMovies(),
                 remoteDataSource.getMovies())
                 .doOnNext(new Consumer<List<Movie>>() {
                     @Override

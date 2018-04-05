@@ -1,12 +1,16 @@
-package com.shar2wy.moviesapp.models;
+package com.shar2wy.moviesapp.models.reviewRepo;
 
 import com.google.gson.annotations.SerializedName;
+
+import io.realm.RealmObject;
 
 /**
  * Created by shar2wy on 4/8/17.
  */
 
-public class Review {
+public class Review extends RealmObject {
+
+    int movieId;
 
     @SerializedName("id")
     private String id;
@@ -42,5 +46,13 @@ public class Review {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 }

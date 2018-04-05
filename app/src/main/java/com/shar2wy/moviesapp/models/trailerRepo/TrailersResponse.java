@@ -1,4 +1,4 @@
-package com.shar2wy.moviesapp.models;
+package com.shar2wy.moviesapp.models.trailerRepo;
 
 import com.google.gson.annotations.SerializedName;
 

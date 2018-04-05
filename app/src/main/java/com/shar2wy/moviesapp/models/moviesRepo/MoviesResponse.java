@@ -1,25 +1,23 @@
-package com.shar2wy.moviesapp.models;
+package com.shar2wy.moviesapp.models.moviesRepo;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 /**
- * Created by shar2wy on 4/8/17.
+ * Created by shar2wy on 4/7/17.
  */
 
-public class ReviewsResponse {
+public class MoviesResponse {
+
     @SerializedName("page")
     private int page;
     @SerializedName("results")
-    private List<Review> results;
+    private List<Movie> results;
     @SerializedName("total_results")
     private int totalResults;
     @SerializedName("total_pages")
     private int totalPages;
-
-    public ReviewsResponse() {
-    }
 
     public int getPage() {
         return page;
@@ -29,11 +27,11 @@ public class ReviewsResponse {
         this.page = page;
     }
 
-    public List<Review> getResults() {
+    public List<Movie> getResults() {
         return results;
     }
 
-    public void setResults(List<Review> results) {
+    public void setResults(List<Movie> results) {
         this.results = results;
     }
 

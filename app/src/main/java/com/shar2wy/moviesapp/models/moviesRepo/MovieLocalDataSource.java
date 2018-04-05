@@ -1,4 +1,4 @@
-package com.shar2wy.moviesapp.models;
+package com.shar2wy.moviesapp.models.moviesRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ class MovieLocalDataSource {
 
     private Realm realm;
 
-    public Flowable<List<Movie>> getMovies(int perPage) {
+    public Flowable<List<Movie>> getMovies() {
         realm = Realm.getDefaultInstance();
         RealmResults<Movie> moviesList = realm.where(Movie.class).findAll();
         List<Movie> list = new ArrayList<>();

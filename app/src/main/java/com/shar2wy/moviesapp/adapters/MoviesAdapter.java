@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.shar2wy.moviesapp.R;
-import com.shar2wy.moviesapp.models.Movie;
+import com.shar2wy.moviesapp.models.moviesRepo.Movie;
 
 import java.util.List;
 

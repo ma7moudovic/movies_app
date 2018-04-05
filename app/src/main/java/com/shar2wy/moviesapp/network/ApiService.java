@@ -1,8 +1,8 @@
 package com.shar2wy.moviesapp.network;
 
-import com.shar2wy.moviesapp.models.MoviesResponse;
-import com.shar2wy.moviesapp.models.ReviewsResponse;
-import com.shar2wy.moviesapp.models.TrailersResponse;
+import com.shar2wy.moviesapp.models.moviesRepo.MoviesResponse;
+import com.shar2wy.moviesapp.models.reviewRepo.ReviewsResponse;
+import com.shar2wy.moviesapp.models.trailerRepo.TrailersResponse;
 
 import io.reactivex.Flowable;
 import retrofit2.Call;
@@ -27,9 +27,9 @@ public interface ApiService {
     Call<MoviesResponse> getMovieDetails(@Path("id") int id, @Query("api_key") String apiKey);
 
     @GET("movie/{id}/reviews")
-    Call<ReviewsResponse> getMovieReviews(@Path("id") int id, @Query("api_key") String apiKey);
+    Flowable<ReviewsResponse> getMovieReviews(@Path("id") int id, @Query("api_key") String apiKey);
 
     @GET("movie/{id}/videos")
-    Call<TrailersResponse> getMovieTrailers(@Path("id") int id, @Query("api_key") String apiKey);
+    Flowable<TrailersResponse> getMovieTrailers(@Path("id") int id, @Query("api_key") String apiKey);
 
 }

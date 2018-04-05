@@ -1,4 +1,4 @@
-package com.shar2wy.moviesapp.models;
+package com.shar2wy.moviesapp.models.moviesRepo;
 
 import android.content.Context;
 
@@ -9,8 +9,6 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 
 /**
  * Created by shar2wy
@@ -31,18 +29,10 @@ class MovieRemoteDataSource {
 
     public Flowable<List<Movie>> getMovies() {
         return apiService.getTopRatedMovies(apiKey)
-                .map(new Function<MoviesResponse, List<Movie>>() {
-                    @Override
-                    public List<Movie> apply(MoviesResponse moviesResponse) throws Exception {
-                        return moviesResponse.getResults();
-                    }
-                })
-                .doOnNext(new Consumer<List<Movie>>() {
-                    @Override
-                    public void accept(List<Movie> movies) throws Exception {
-                        //saveToRealm
+                .map(moviesResponse -> moviesResponse.getResults())
+                .doOnNext(movies -> {
+                    //saveToRealm
 //                        mMovieLocalDataSource.saveMovies(movies);
-                    }
                 }).subscribeOn(AndroidSchedulers.mainThread());
     }
 }

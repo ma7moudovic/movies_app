@@ -1,5 +1,8 @@
 package com.shar2wy.moviesapp.activities;
 
+import static com.shar2wy.moviesapp.activities.MovieDetailsActivity.DETAILED_MOVIE;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +16,8 @@ import android.widget.Toast;
 
 import com.shar2wy.moviesapp.R;
 import com.shar2wy.moviesapp.adapters.MoviesAdapter;
-import com.shar2wy.moviesapp.models.Movie;
-import com.shar2wy.moviesapp.models.MovieRepo;
+import com.shar2wy.moviesapp.models.moviesRepo.Movie;
+import com.shar2wy.moviesapp.models.moviesRepo.MovieRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.OnM
 
     @Override
     public void onMovieClick(@NonNull Movie movie) {
-
+        startActivity(new Intent(this, MovieDetailsActivity.class).putExtra(DETAILED_MOVIE, movie.getId()));
     }
 
 

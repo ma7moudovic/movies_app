@@ -1,12 +1,14 @@
-package com.shar2wy.moviesapp.models;
+package com.shar2wy.moviesapp.models.trailerRepo;
 
 import com.google.gson.annotations.SerializedName;
+
+import io.realm.RealmObject;
 
 /**
  * Created by shar2wy on 4/8/17.
  */
 
-public class Trailer {
+public class Trailer extends RealmObject{
     @SerializedName("id")
     private String id;
 
@@ -21,6 +23,8 @@ public class Trailer {
 
     @SerializedName("type")
     private String type;
+
+    private int mMovieId;
 
     public Trailer() {
     }
@@ -63,5 +67,13 @@ public class Trailer {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setMovieId(int movieId) {
+        mMovieId = movieId;
+    }
+
+    public int getMovieId() {
+        return mMovieId;
     }
 }
