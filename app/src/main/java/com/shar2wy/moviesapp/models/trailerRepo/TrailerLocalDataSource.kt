@@ -15,7 +15,7 @@ internal class TrailerLocalDataSource {
 
     fun getTrailers(id: Int): Flowable<List<Trailer>> {
         realm = Realm.getDefaultInstance()
-        val trailersList = realm!!.where(Trailer::class.java).equalTo("mMovieId", id).findAll()
+        val trailersList = realm!!.where(Trailer::class.java).equalTo("movieId", id).findAll()
         val list = ArrayList<Trailer>()
         list.addAll(trailersList)
 

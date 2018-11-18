@@ -1,12 +1,9 @@
 package com.shar2wy.moviesapp.models.moviesRepo
 
 import android.content.Context
-
 import com.shar2wy.moviesapp.network.ApiClient
 import com.shar2wy.moviesapp.network.ApiService
-
 import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
  * Created by shar2wy
@@ -23,6 +20,5 @@ internal class MovieRemoteDataSource(context: Context) {
     val movies: Flowable<List<Movie>>
         get() = apiService.getTopRatedMovies(apiKey)
                 .map { moviesResponse -> moviesResponse.results }
-                .doOnNext { movies -> }.subscribeOn(AndroidSchedulers.mainThread())
-
+                .doOnNext { movies -> }
 }

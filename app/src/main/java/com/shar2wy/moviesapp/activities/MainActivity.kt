@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         initViews()
     }
 
-    var movieClicked: ((movie: Movie) -> Unit) = {
+    private var movieClicked: ((movie: Movie) -> Unit) = {
         startActivity(Intent(this, MovieDetailsActivity::class.java).putExtra(MovieDetailsActivity.DETAILED_MOVIE, it.id))
     }
 
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         moviesAdapter = MoviesAdapter(mMovies, movieClicked)
 
-        recycler_view_movies.layoutManager = GridLayoutManager(this, 2);
+        recycler_view_movies.layoutManager = GridLayoutManager(this, 2)
         recycler_view_movies.adapter = moviesAdapter
 
         fetchMoviesList()
@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         val disposable = MovieRepo.getInstance(this).movies
                 .subscribeOn(Schedulers.io())
+//                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ movies ->
                     mMovies.clear()

@@ -1,12 +1,9 @@
 package com.shar2wy.moviesapp.models.reviewRepo
 
 import android.content.Context
-
 import com.shar2wy.moviesapp.network.ApiClient
 import com.shar2wy.moviesapp.network.ApiService
-
 import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
  * Created by shar2wy
@@ -32,6 +29,5 @@ internal class ReviewRemoteDataSource(context: Context) {
                 }
                 .toList()
                 .toFlowable()
-                .subscribeOn(AndroidSchedulers.mainThread())
     }
 }
