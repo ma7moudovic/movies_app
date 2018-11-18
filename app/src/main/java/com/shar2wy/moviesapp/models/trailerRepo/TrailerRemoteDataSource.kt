@@ -12,12 +12,8 @@ import io.reactivex.Flowable
  */
 internal class TrailerRemoteDataSource(context: Context) {
 
-    var apiService: ApiService
+    var apiService: ApiService = ApiClient.getInstance(context).getService(ApiService::class.java)
     var apiKey = "38db4ee0b3b9fe63c95b9c835b73021f"
-
-    init {
-        apiService = ApiClient.getInstance(context).getService(ApiService::class.java)
-    }
 
     fun getTrailers(id: Int): Flowable<List<Trailer>> {
         return apiService.getMovieTrailers(id, apiKey)
