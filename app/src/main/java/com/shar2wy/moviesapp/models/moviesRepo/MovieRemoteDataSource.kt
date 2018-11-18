@@ -3,6 +3,7 @@ package com.shar2wy.moviesapp.models.moviesRepo
 import android.content.Context
 import com.shar2wy.moviesapp.network.ApiClient
 import com.shar2wy.moviesapp.network.ApiService
+import com.shar2wy.moviesapp.util.Constants.apiKey
 import io.reactivex.Flowable
 
 /**
@@ -15,7 +16,6 @@ internal class MovieRemoteDataSource(context: Context) {
     var mMovieLocalDataSource: MovieLocalDataSource = MovieLocalDataSource()
 
     var apiService: ApiService = ApiClient.getInstance(context).getService(ApiService::class.java)
-    var apiKey = "38db4ee0b3b9fe63c95b9c835b73021f"
 
     val movies: Flowable<List<Movie>>
         get() = apiService.getTopRatedMovies(apiKey)

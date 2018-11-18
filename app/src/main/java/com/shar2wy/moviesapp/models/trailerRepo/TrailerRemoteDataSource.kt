@@ -3,6 +3,7 @@ package com.shar2wy.moviesapp.models.trailerRepo
 import android.content.Context
 import com.shar2wy.moviesapp.network.ApiClient
 import com.shar2wy.moviesapp.network.ApiService
+import com.shar2wy.moviesapp.util.Constants.apiKey
 import io.reactivex.Flowable
 
 /**
@@ -13,7 +14,6 @@ import io.reactivex.Flowable
 internal class TrailerRemoteDataSource(context: Context) {
 
     var apiService: ApiService = ApiClient.getInstance(context).getService(ApiService::class.java)
-    var apiKey = "38db4ee0b3b9fe63c95b9c835b73021f"
 
     fun getTrailers(id: Int): Flowable<List<Trailer>> {
         return apiService.getMovieTrailers(id, apiKey)
