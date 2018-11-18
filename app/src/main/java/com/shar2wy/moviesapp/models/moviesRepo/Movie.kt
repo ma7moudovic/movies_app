@@ -8,30 +8,31 @@ import java.io.Serializable
  * Created by shar2wy on 4/7/17.
  */
 
-open class Movie(posterPath: String, adult: Boolean, overview: String, releaseDate: String, genreIds: List<Int>, id: Int, originalTitle: String, originalLanguage: String, title: String, backdropPath: String, @SerializedName("popularity") var popularity: Double?, voteCount: Int?, @SerializedName("video") var video: Boolean?, @SerializedName("vote_average") var voteAverage: Double?) : RealmObject(), Serializable {
-
+open class Movie() : RealmObject(), Serializable {
     @SerializedName("poster_path")
-    var posterPath: String = posterPath
+    var posterPath: String? = null
     @SerializedName("adult")
-    var isAdult: Boolean = adult
+    var isAdult: Boolean = false
     @SerializedName("overview")
-    var overview: String? = overview
+    var overview: String? = null
     @SerializedName("release_date")
-    var releaseDate: String? = releaseDate
+    var releaseDate: String? = null
     @SerializedName("id")
     var id: Int = 0
     @SerializedName("original_title")
-    var originalTitle: String? = originalTitle
+    var originalTitle: String? = null
     @SerializedName("original_language")
-    var originalLanguage: String? = originalLanguage
+    var originalLanguage: String? = null
     @SerializedName("title")
-    var title: String? = title
+    var title: String? = null
     @SerializedName("backdrop_path")
-    var backdropPath: String? = backdropPath
+    var backdropPath: String? = null
     @SerializedName("vote_count")
     var voteCount: Int = 0
-
-    init {
-        this.id = id
-    }
+    @SerializedName("popularity")
+    var popularity: Double? = null
+    @SerializedName("video")
+    var video: Boolean? = null
+    @SerializedName("vote_average")
+    var voteAverage: Double? = null
 }
