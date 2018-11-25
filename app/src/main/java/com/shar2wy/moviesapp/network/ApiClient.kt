@@ -2,7 +2,6 @@ package com.shar2wy.moviesapp.network
 
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.text.TextUtils
 import android.util.Log
 import com.shar2wy.moviesapp.util.Constants
@@ -26,13 +25,13 @@ const val WRITE_TIMEOUT = "WRITE_TIMEOUT"
  * on 4/2/18.
  * Description: description goes here
  */
-class ApiClient(private val context: Context) {
+class ApiClient {
 
     private val TAG = ApiClient::class.java.simpleName
 
 
     //new
-    private fun authInterceptor(context: Context): Interceptor {
+    private fun authInterceptor(): Interceptor {
         return Interceptor {
             val newRequest: Request = it.request().newBuilder()
                     .addHeader("Accept", "application/json")
@@ -50,7 +49,7 @@ class ApiClient(private val context: Context) {
 
     private fun buildOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-                .addInterceptor(authInterceptor(context))
+                .addInterceptor(authInterceptor())
                 .addInterceptor(loggingInterceptor())
                 .addInterceptor(timeoutInterceptor())
                 .readTimeout(60, TimeUnit.SECONDS)
@@ -126,11 +125,11 @@ class ApiClient(private val context: Context) {
 
         @Synchronized
         @JvmStatic
-        fun getInstance(context: Context): ApiClient {
+        fun getInstance(): ApiClient {
             INSTANCE?.let { instance ->
                 return instance
             } ?: run {
-                INSTANCE = ApiClient(context.applicationContext)
+                INSTANCE = ApiClient()
                 return INSTANCE as ApiClient
             }
         }

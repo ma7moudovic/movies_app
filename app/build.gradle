@@ -61,6 +61,10 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
 
+    //arch components
+    api "android.arch.lifecycle:extensions:$archVersion"
+    kapt "android.arch.lifecycle:compiler:$archVersion"
+
     // glide image library
     implementation "com.github.bumptech.glide:glide:4.7.1"
 

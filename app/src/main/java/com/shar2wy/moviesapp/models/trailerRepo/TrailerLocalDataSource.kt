@@ -11,14 +11,12 @@ import java.util.*
  */
 internal class TrailerLocalDataSource {
 
-    private var realm: Realm? = null
+    private var realm: Realm = Realm.getDefaultInstance()
 
     fun getTrailers(id: Int): Flowable<List<Trailer>> {
-        realm = Realm.getDefaultInstance()
-        val trailersList = realm!!.where(Trailer::class.java).equalTo("movieId", id).findAll()
+        val trailersList = realm.where(Trailer::class.java).equalTo("movieId", id).findAll()
         val list = ArrayList<Trailer>()
         list.addAll(trailersList)
-
         return Flowable.just(list)
     }
 

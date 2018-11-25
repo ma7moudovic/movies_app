@@ -1,6 +1,5 @@
 package com.shar2wy.moviesapp.models.moviesRepo
 
-import android.content.Context
 import io.reactivex.Flowable
 
 /**
@@ -8,8 +7,8 @@ import io.reactivex.Flowable
  * on 4/4/18.
  * Description: description goes here
  */
-class MovieRepo private constructor(context: Context) {
-    private val remoteDataSource: MovieRemoteDataSource = MovieRemoteDataSource(context)
+class MovieRepo private constructor() {
+    private val remoteDataSource: MovieRemoteDataSource = MovieRemoteDataSource()
     private val localDataSource: MovieLocalDataSource = MovieLocalDataSource()
 
     val movies: Flowable<List<Movie>>
@@ -22,9 +21,9 @@ class MovieRepo private constructor(context: Context) {
         private var INSTANCE: MovieRepo? = null
 
         @Synchronized
-        fun getInstance(context: Context): MovieRepo {
+        fun getInstance(): MovieRepo {
             if (INSTANCE == null) {
-                INSTANCE = MovieRepo(context)
+                INSTANCE = MovieRepo()
             }
             return INSTANCE as MovieRepo
         }

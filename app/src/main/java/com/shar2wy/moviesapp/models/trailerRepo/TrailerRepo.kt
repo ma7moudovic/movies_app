@@ -1,6 +1,5 @@
 package com.shar2wy.moviesapp.models.trailerRepo
 
-import android.content.Context
 import io.reactivex.Flowable
 
 /**
@@ -8,14 +7,9 @@ import io.reactivex.Flowable
  * on 4/4/18.
  * Description: description goes here
  */
-class TrailerRepo private constructor(context: Context) {
-    private val remoteDataSource: TrailerRemoteDataSource
-    private val localDataSource: TrailerLocalDataSource
-
-    init {
-        this.remoteDataSource = TrailerRemoteDataSource(context)
-        this.localDataSource = TrailerLocalDataSource()
-    }
+class TrailerRepo private constructor() {
+    private val remoteDataSource: TrailerRemoteDataSource = TrailerRemoteDataSource()
+    private val localDataSource: TrailerLocalDataSource = TrailerLocalDataSource()
 
     fun getTrailers(id: Int): Flowable<List<Trailer>> {
         return Flowable.concat(localDataSource.getTrailers(id),
@@ -28,9 +22,9 @@ class TrailerRepo private constructor(context: Context) {
         private var INSTANCE: TrailerRepo? = null
 
         @Synchronized
-        fun getInstance(context: Context): TrailerRepo {
+        fun getInstance(): TrailerRepo {
             if (INSTANCE == null) {
-                INSTANCE = TrailerRepo(context)
+                INSTANCE = TrailerRepo()
             }
             return INSTANCE as TrailerRepo
         }
